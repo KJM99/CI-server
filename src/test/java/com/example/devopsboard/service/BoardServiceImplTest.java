@@ -35,7 +35,6 @@ class BoardServiceImplTest {
         BDDMockito.given(boardRepository.findById(1L))
             .willReturn(Optional.of(board));
 
-
         BoardResponse byId = boardService.getById(1L);
 
 //        행위 검증
@@ -43,7 +42,10 @@ class BoardServiceImplTest {
 //        상태 검증
         assertEquals("test", byId.name());
         assertEquals("test", byId.text());
-        // assertNotNull(byId.id());
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            boardService.getById(2L);
+        }, "Expected getById to throw, but it didn't");
     }
     // @Test
     // void getByIdNotExist() {
