@@ -12,4 +12,6 @@ public interface BoardService {
     void addBoard(BoardRequest req);
 
     BoardResponse getById(Long id);
+
+    void deleteById(Long id);
 }

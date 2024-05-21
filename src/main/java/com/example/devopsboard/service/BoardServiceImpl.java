@@ -5,6 +5,7 @@ import com.example.devopsboard.domain.dto.response.BoardResponse;
 import com.example.devopsboard.domain.entity.Board;
 import com.example.devopsboard.domain.repository.BoardRepository;
 import java.util.List;
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -35,6 +36,15 @@ public class BoardServiceImpl implements BoardService {
             throw new IllegalArgumentException("null");
         }
         return BoardResponse.from(board);
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        // 이렇게하면 Select 문이 들어감
+        Optional<Board> byId = boardRepository.findById(id);
+        byId.orElseThrow(IllegalArgumentException::new);
+        boardRepository.deleteById(id);
+
     }
 }
 
