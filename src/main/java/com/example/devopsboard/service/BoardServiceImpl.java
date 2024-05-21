@@ -28,11 +28,12 @@ public class BoardServiceImpl implements BoardService {
         boardRepository.save(req.toEntity());
     }
 
+    @Override
     public BoardResponse getById(Long id) {
         Board board = boardRepository.findById(id).orElse(null);
-
-        
-        assert board != null;
+        if (board == null) {
+            throw new IllegalArgumentException("null");
+        }
         return BoardResponse.from(board);
     }
 }

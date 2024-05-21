@@ -10,4 +10,6 @@ public interface BoardService {
     List<BoardResponse> getBoard();
 
     void addBoard(BoardRequest req);
+
+    BoardResponse getById(Long id);
 }
