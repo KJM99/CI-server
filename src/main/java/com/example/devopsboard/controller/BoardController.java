@@ -7,6 +7,7 @@ import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,6 +33,10 @@ public class BoardController {
         return boardService.getBoard();
     }
 
+    @GetMapping("{id}")
+    public BoardResponse getBoard(@PathVariable long id) {
+        return boardService.getById(id);
+    }
 
     @PostMapping
     public void addBoard(@RequestBody BoardRequest req){
