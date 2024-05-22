@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode
+// @EqualsAndHashCode
 @Table(name = "BOARDS")
 public class Board {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
