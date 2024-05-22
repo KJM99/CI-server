@@ -33,6 +33,10 @@ public class BoardController {
         return boardService.getBoard();
     }
 
+    @GetMapping("{id}")
+    public BoardResponse getBoard(@PathVariable long id) {
+        return boardService.getById(id);
+    }
 
     @PostMapping
     public void addBoard(@RequestBody BoardRequest req){
