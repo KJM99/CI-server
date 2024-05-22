@@ -2,7 +2,7 @@ spring:
   application:
     name: board
   datasource:
-    url: jdbc:mysql://localhost:3306/devopsBoard?characterEncoding=UTF-8&serverTimezone=Asia/Seoul
+    url: jdbc:mysql://35.225.87.247:3306/devopsBoard?characterEncoding=UTF-8&serverTimezone=Asia/Seoul
     username: test
     password: 0000
   jpa:
@@ -10,4 +10,4 @@ spring:
       ddl-auto: create
     show-sql: true
 server:
-  port: 8081
+  port: 8080
