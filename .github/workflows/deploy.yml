@@ -1,0 +1,28 @@
+
+name: Deploy
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  deploy:
+    runs-on: "ubuntu-latest"
+    permissions:
+      contents: read
+
+    steps:
+    - uses: actions/checkout@v4
+    # 이게 ssh username@ip
+    - name: executing remote ssh commands using password
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        password: ${{ secrets.PASSWORD }}
+        script: |
+          cd ci-server
+          git pull
+          sh gradlew build
+          nohup java -jar build/libs/*T.jar >/dev/null 2>&1 &
+          
