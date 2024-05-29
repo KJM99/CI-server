@@ -14,23 +14,6 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     # 이게 ssh username@ip
-
-    # - name: executing remote ssh commands using password
-    #   uses: appleboy/ssh-action@v1.0.3
-    #   with:
-    #     host: ${{ secrets.HOST }}
-    #     username: ${{ secrets.USERNAME }}
-    #     key: ${{ secrets.PASSWORD }}
-    #     script: |
-    #       cd devops-board
-    #       git pull
-    #       sh gradle build
-    #       # nohup java -jar build/libs/*T.jar >/dev/null 2>&1 &
-    - name: Build with Gradle Wrapper
-      run: |
-          cd ci-server
-          git pull
-          sh gradle build
           
     - name: Docker Login
       uses: docker/login-action@v3.2.0
