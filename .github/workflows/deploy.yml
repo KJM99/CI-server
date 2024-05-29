@@ -14,7 +14,11 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     # 이게 ssh username@ip
-      
+
+    - name: chmod 
+      run: chmod 744 gradlew
+      if: runner.os == 'Linux' || runner.os == 'macOS'  
+    
     - name: Build with Gradle Wrapper
       run: ./gradlew build
 
