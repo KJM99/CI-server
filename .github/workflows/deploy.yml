@@ -14,6 +14,19 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     # 이게 ssh username@ip
+
+    - name: Docker Login
+      uses: docker/login-action@v3.2.0
+      with:
+        username: ${{secrets.DOCKER_USERNAME}}
+        password: ${{secrets.DOCKER_PASSWORD}}
+
+    - name: Docker build
+      run: docker build -t ${{secrets.DOCKER_USERNAME}}/${{secrets.DOCKER_REPO}} .
+
+    - name: Docker push
+      run: docker push ${{secrets.DOCKER_USERNAME}}/${{secrets.DOCKER_REPO}}
+    
     - name: executing remote ssh commands using password
       uses: appleboy/ssh-action@v1.0.3
       with:
@@ -21,8 +34,8 @@ jobs:
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.PASSWORD }}
         script: |
-          cd ci-server
-          git pull
-          sh gradlew build
-          nohup java -jar build/libs/*T.jar >/dev/null 2>&1 &
-          
+          docker pull ${{secrets.DOCKER_USERNAME}}/${{secrets.DOCKER_REPO}} 
+          docker rm -f ${{secrets.DOCKER_REPO}} 
+          docker run --name ${{secret.DOCKER_REPO}} -p 8080:8080 -e profiles=prod -e username=root -e password=1q2w3e4r --network server -d ${{secret.DOCKER_USERNAME}}/${{secret.DOCKER_REPO}}
+
+    
