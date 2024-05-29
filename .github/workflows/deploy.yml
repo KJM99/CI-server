@@ -36,6 +36,6 @@ jobs:
         script: |
           docker pull ${{secrets.DOCKER_USERNAME}}/${{secrets.DOCKER_REPO}} 
           docker rm -f ${{secrets.DOCKER_REPO}} 
-          docker run --name ${{secret.DOCKER_REPO}} -p 8080:8080 -e profiles=prod -e username=root -e password=1q2w3e4r --network server -d ${{secret.DOCKER_USERNAME}}/${{secret.DOCKER_REPO}}
+          docker run --name ${{secrets.DOCKER_REPO}} -p 8080:8080 -e profiles=prod -e username=root -e password=1q2w3e4r --network server -d ${{secrets.DOCKER_USERNAME}}/${{secrets.DOCKER_REPO}}
 
     
