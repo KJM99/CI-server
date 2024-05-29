@@ -12,8 +12,8 @@ jobs:
       contents: read
 
     steps:
-    - name: Gradle build
-      run: ./gradlew build
+    # - name: Gradle build
+    #   run: ./gradlew build
     
     - uses: actions/checkout@v4
     # 이게 ssh username@ip
