@@ -14,9 +14,6 @@ jobs:
     steps:
     - name: Gradle build
       run: ./gradlew build
-    
-    - uses: actions/checkout@v4
-    # 이게 ssh username@ip
 
     - name: Docker Login
       uses: docker/login-action@v3.2.0
@@ -29,6 +26,9 @@ jobs:
 
     - name: Docker push
       run: docker push ${{secrets.DOCKER_USERNAME}}/${{secrets.DOCKER_REPO}}
+      
+    - uses: actions/checkout@v4
+    # 이게 ssh username@ip
     
     - name: executing remote ssh commands using password
       uses: appleboy/ssh-action@v1.0.3
