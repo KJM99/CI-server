@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("api/v1/boards")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "http://35.193.99.200/"
+@CrossOrigin(origins = "*"
     ,methods = {
     RequestMethod.GET,
     RequestMethod.POST,
