@@ -12,6 +12,16 @@ jobs:
       contents: read
 
     steps:
+    - uses: actions/checkout@v4
+    # 이게 ssh username@ip
+    
+    - name: Setup Gradle
+      uses: gradle/actions/setup-gradle@417ae3ccd767c252f5661f1ace9f835f9654f2b5 # v3.1.0
+      
+    - name: chmod 
+      run: chmod 744 gradlew
+      if: runner.os == 'Linux' || runner.os == 'macOS'  
+      
     - name: Build with Gradle Wrapper
       run: ./gradlew build
 
@@ -26,9 +36,6 @@ jobs:
 
     - name: Docker push
       run: docker push ${{secrets.DOCKER_USERNAME}}/${{secrets.DOCKER_REPO}}
-      
-    - uses: actions/checkout@v4
-    # 이게 ssh username@ip
     
     - name: executing remote ssh commands using password
       uses: appleboy/ssh-action@v1.0.3
