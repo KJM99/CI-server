@@ -28,7 +28,7 @@ jobs:
     #       # nohup java -jar build/libs/*T.jar >/dev/null 2>&1 &
     - name: Build with Gradle Wrapper
       run: |
-          cd devops-board
+          cd ci-server
           git pull
           sh gradle build
           
