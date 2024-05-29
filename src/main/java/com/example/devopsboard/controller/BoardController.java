@@ -17,13 +17,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("api/v1/boards")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "http://localhost:5173"
+@CrossOrigin(origins = "http://35.193.99.200/"
     ,methods = {
     RequestMethod.GET,
     RequestMethod.POST,
     RequestMethod.DELETE,
     RequestMethod.PUT,
-    RequestMethod.OPTIONS})
+    RequestMethod.OPTIONS}, allowedHeaders = "*")
 public class BoardController {
 
     private final BoardService boardService;
