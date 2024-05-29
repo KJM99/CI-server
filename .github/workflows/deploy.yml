@@ -14,7 +14,13 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     # 이게 ssh username@ip
-          
+
+    - name: Set Gradle Wrapper executable permissions
+      run: chmod +x ./gradlew
+
+    - name: Build with Gradle Wrapper
+      run: ./gradlew build --info --stacktrace
+      
     - name: Docker Login
       uses: docker/login-action@v3.2.0
       with:
