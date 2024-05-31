@@ -2,7 +2,7 @@ spring:
   application:
     name: board
   datasource:
-    url: jdbc:mysql://10.182.0.2:3307/devopsBoard?characterEncoding=UTF-8&serverTimezone=Asia/Seoul
+    url: jdbc:mysql://mysql:3306/devopsBoard?characterEncoding=UTF-8&serverTimezone=Asia/Seoul
     username: ${username}
     password: ${password}
   jpa:
